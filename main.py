@@ -5,6 +5,8 @@ import json
 import datetime
 import time
 from playsound import playsound
+from colorama import init, Fore
+
 
 headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
@@ -22,14 +24,15 @@ headers = {
         "sec-gpc": "1",
         "upgrade-insecure-requests": "1"
         }
-CRED = '\033[91m'
 CEND = '\033[0m'
-CGREYBG = '\33[100m'
+CRED = '\033[91m'
+CGREYBG = '\033[33m'
 check_interval = 5
 
 def test_init():
     print(f'Beginning Script')
     # logging.basicConfig(level=logging.DEBUG)
+    init()
 
 def get_skus():
     return "|".join([
@@ -109,7 +112,7 @@ def check_skus(sku_list):
                 continue
             # \tPickup: {product['pickup']['status']}
             print(f"{CGREYBG}[{resp_time}] {status}:\t{name} ({url}){CEND}")
-            if status != "ComingSoon" or status != "SoldOutOnline":
+            if status != "ComingSoon" and status != "SoldOutOnline":
                 print(f"{CRED}===== ITEM AVAILABLE? {name} ({url}){CEND}")
                 found_smth = True
         if found_smth is True:
