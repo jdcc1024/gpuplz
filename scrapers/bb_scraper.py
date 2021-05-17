@@ -122,7 +122,7 @@ class BestBuyScraper:
                 continue
             # \tPickup: {product['pickup']['status']}
             # print(f"{CGREYBG}[{resp_time}] {status}:\t{name} ({url}){CEND}")
-            if status != "ComingSoon" and status != "Unknown":  # and status != "SoldOutOnline"
+            if status != "ComingSoon" and status != "SoldOutOnline" and status != "Unknown":
                 found_smth = True
                 bb_scan['in_stock'].append(item)
             else:
